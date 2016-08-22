@@ -1,14 +1,13 @@
 /**
- * A 3D Vector class.
+ * A 2D vector class.
  **/
 
 /**
  * Constructor.
  **/
-function Vector(x, y, z) {
+function Vector(x, y) {
     this.x = x || 0;
     this.y = y || 0;
-    this.z = z || 0;
 }
 
 Vector.prototype = {
@@ -20,7 +19,6 @@ Vector.prototype = {
     set: function (other) {
         this.x = other.x;
         this.y = other.y;
-        this.z = other.z;
         return this;
     },
 
@@ -41,22 +39,13 @@ Vector.prototype = {
     },
 
     /**
-     * Set the y value of this vector to the new value.
-     **/
-    setZ: function (z) {
-        this.z = z;
-        return this;
-    },
-
-    /**
      * Returns the resultant vector of the addition of this vector and the other
      * vector.
      **/
     add: function (other) {
         return new Vector(
             this.x + other.x,
-            this.y + other.y,
-            this.z + other.z
+            this.y + other.y
         );
     },
 
@@ -67,8 +56,7 @@ Vector.prototype = {
     subtract: function (other) {
         return new Vector(
             this.x - other.x,
-            this.y - other.y,
-            this.z - other.z
+            this.y - other.y
         );
     },
 
@@ -77,7 +65,7 @@ Vector.prototype = {
      * other vector.
      **/
     dot: function (other) {
-        return this.x * other.x + this.y * other.y + this.z * other.z;
+        return this.x * other.x + this.y * other.y;
     },
 
     /**
@@ -86,8 +74,7 @@ Vector.prototype = {
     scalarMultiply: function (scalar) {
         return new Vector(
             this.x * scalar,
-            this.y * scalar,
-            this.z * scalar
+            this.y * scalar
         );
     },
 
@@ -97,8 +84,7 @@ Vector.prototype = {
     scalarDivide: function (scalar) {
         return new Vector(
             this.x / scalar,
-            this.y / scalar,
-            this.z / scalar
+            this.y / scalar
         );
     },
 
@@ -120,12 +106,12 @@ Vector.prototype = {
      * Returns the magnitude of this vector squared.
      **/
     magnitudeSquared: function () {
-        return this.x * this.x + this.y * this.y + this.z * this.z;
+        return this.x * this.x + this.y * this.y;
     },
 
 
     /**
-     * Returns the angle of this vector from the positive x-axis.
+     * Returns the direction in radians of this vector.
      **/
     direction: function () {
         return Math.atan2(this.y, this.x);
@@ -146,28 +132,13 @@ Vector.prototype = {
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle)
         );
-    },
-
-    /**
-     * Return the cross product between this vector and the other vector.
-     **/
-    cross: function (other) {
-
     }
 };
 
-/**
- * Return a vector with the given magnitude on the xy-plane with the given
- * angle from the positive x-axis.
- **/
 Vector.fromPolar = function (magnitude, direction) {
     return Vector.unitVector(direction).scalarMultiply(magnitude);
 }
 
-/**
- * Return a unit vector on the xy-plane with the given angle from the positive
- * x-axis.
- **/
 Vector.unitVector = function (angle) {
     return new Vector(Math.cos(angle), Math.sin(angle));
 }
