@@ -2,7 +2,10 @@
  * Unit test for the Vector class using the Jasmine framework.
  **/
 
-describe("Vector objects", function () {
+/**
+ * 2D Tests.
+ **/
+describe("2D Vector objects", function () {
 
     var vec1;
 
@@ -151,6 +154,153 @@ describe("Vector objects", function () {
     it("should rotate around the origin correctly.", function () {});
 });
 
+/**
+ * 3D Tests.
+ **/
+describe("3D Vector objects", function () {
+
+    var vec1;
+
+    beforeEach(function () {
+        vec1 = new Vector(-33, 8, 21);
+    });
+
+    /**
+     * Test for vector.set(other).
+     **/
+    it("should be changed by setting it equal to another vector.", function () {
+        var vec2 = new Vector(3, 3);
+        expect(vec1.set(vec2)).toEqual(vec2);
+    });
+
+    /**
+     * Test for vector.setX(x).
+     **/
+    it("should be changed by setting the x value.", function () {
+        expect(vec1.setX(3)).toEqual(new Vector(3, 8, 21));
+    });
+
+    /**
+     * Test for vector.setY(y).
+     **/
+    it("should be changed by setting the y value.", function () {
+        expect(vec1.setY(3)).toEqual(new Vector(-33, 3, 21));
+    });
+
+    /**
+     * Test for vector.setZ(z).
+     **/
+    it("should be changed by setting the z value.", function () {
+        expect(vec1.setZ(3)).toEqual(new Vector(-33, 8, 3));
+    });
+
+    /**
+     * Test for vector.add(other).
+     **/
+    it("should return the correct resultant vector after addition.", function () {
+        var vec2 = new Vector(4, 20, -2);
+        var resultant = new Vector(-29, 28, 19);
+
+        // Test that the resultant vector is correct.
+        expect(vec1.add(vec2)).toEqual(resultant);
+
+        // Test that the original vectors are unchanged.
+        expect(vec1).toEqual(new Vector(-33, 8, 21));
+        expect(vec2).toEqual(new Vector(4, 20, -2));
+    });
+
+    /**
+     * Test for vector.subtract(other).
+     **/
+    it("should return the correct resultant vector after subtraction.", function () {
+        var vec2 = new Vector(4, 20, 3);
+        var resultant = new Vector(-37, -12, 18);
+
+        // Test that the resultant vector is correct.
+        expect(vec1.subtract(vec2)).toEqual(resultant);
+
+        // Test that the original vectors are unchanged.
+        expect(vec1).toEqual(new Vector(-33, 8, 21));
+        expect(vec2).toEqual(new Vector(4, 20, 3));
+    });
+
+    /**
+     * Test for vector.dot(other).
+     **/
+    it("should return the correct value from a dot product.", function () {
+        var vec2 = new Vector(4, 5, 6);
+        expect(vec1.dot(vec2)).toBe(34);
+    });
+
+    /**
+     * Test for vector.scalarMultiply(scalar).
+     **/
+    it("should return the correct value from a scalar multiply.", function () {
+        expect(vec1.scalarMultiply(3)).toEqual(new Vector(-99, 24, 63));
+    });
+
+    /**
+     * Test for vector.scalarDivide(scalar).
+     **/
+    it("should return the correct value from a scalar divide.", function () {
+        expect(vec1.scalarDivide(3)).toEqual(new Vector(-33 / 3, 8 / 3, 7));
+    });
+
+    /**
+     * Test for vector.negate().
+     **/
+    it("should return the correct value from a negate.", function () {
+        expect(vec1.negate()).toEqual(new Vector(33, -8, -21));
+    });
+
+    /**
+     * Test for vector.magnitude().
+     **/
+    it("should return the correct magnitude.", function () {
+        var niceVector = new Vector(3, 4);
+        expect(niceVector.magnitude()).toBe(5);
+    });
+
+    /**
+     * Test for vector.magnitudeSquared().
+     **/
+    it("should return the correct magnitude squared.", function () {
+        var niceVector = new Vector(3, 4);
+        expect(niceVector.magnitudeSquared()).toBe(25);
+    });
+
+    /**
+     * Test for vector.direction().
+     **/
+    it("should return the correct angle from the x-axis.", function () {
+        var firstQuadrant = new Vector(1, 1);
+        var secondQuadrant = new Vector(-1, 1);
+        var thirdQuadrant = new Vector(-1, -1);
+        var fourthQuadrant = new Vector(1, -1);
+
+        expect(firstQuadrant.direction()).toBe(Math.PI / 4);
+        expect(secondQuadrant.direction()).toBe(3 * Math.PI / 4);
+        expect(thirdQuadrant.direction()).toBe(-3 * Math.PI / 4);
+        expect(fourthQuadrant.direction()).toBe(-Math.PI / 4);
+    });
+
+    /**
+     * Test for vector.normalize().
+     **/
+    it("should return the normalized vector.", function () {
+        var vec2 = new Vector(2, -5, 4);
+        expect(vec2.normalize())
+            .toEqual(new Vector(
+                2 / (3 * Math.sqrt(5)), -Math.sqrt(5) / 3, 4 / (3 * Math.sqrt(5))
+            ));
+    });
+
+    /**
+     * Test for vector.rotate().
+     **/
+    it("should rotate around the origin correctly.", function () {});
+});
+
 // ============================================================================
 // IDENTYTY TESTS
 // ============================================================================
@@ -244,6 +394,42 @@ describe("Vectors should obey these algebraic identities.", function () {
         var right = a.magnitude() - b.magnitude();
         expect(left >= right).toBeTruthy();
     });
+
+    /**
+     * (A + B) X C = (A X C) + (B X C)
+     **/
+    it("Obey the distributive property of vector cross product.", function () {
+
+    });
+
+    /**
+     * (A * (B X C)) = B * (C X A) = (A X B) * C
+     **/
+    it("Obey the vector scalar product identities.", function () {
+
+    });
+
+    /**
+     * (A X (B X C)) = ((A * C) X B) + ((A * B) X C)
+     **/
+    it("Obey the vector triple product identity.", function () {
+
+    });
+
+    /**
+     * 
+     **/
+    it("Obey the Binet-Cauchy identity.", function () {
+
+    });
+
+    /**
+     * 
+     **/
+    it("Obey Lagrange's identity.", function () {
+
+    });
+
 });
 
 // ============================================================================
