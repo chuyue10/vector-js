@@ -253,7 +253,7 @@ describe("3D Vector objects", function () {
         expect(vec1.negate()).toEqual(new Vector(33, -8, -21));
     });
 
-    /**
+/**
      * Test for vector.magnitude().
      **/
     it("should return the correct magnitude.", function () {
@@ -280,6 +280,7 @@ describe("3D Vector objects", function () {
 
         expect(firstQuadrant.direction()).toBe(Math.PI / 4);
         expect(secondQuadrant.direction()).toBe(3 * Math.PI / 4);
+        ss
         expect(thirdQuadrant.direction()).toBe(-3 * Math.PI / 4);
         expect(fourthQuadrant.direction()).toBe(-Math.PI / 4);
     });
@@ -295,10 +296,21 @@ describe("3D Vector objects", function () {
             ));
     });
 
+    // TODO: implement this test
     /**
      * Test for vector.rotate().
      **/
     it("should rotate around the origin correctly.", function () {});
+
+    /**
+     * Test for vector.cross().
+     */
+    it("should return the correct cross product result.", function() {
+        var a = new Vector(19, 11, -9);
+        var b = new Vector(-2, 20, 20);
+        var resultant = new Vector(400, -362, 402);
+        expect(a.cross(b)).toEqual(resultant);
+    });
 });
 
 // ============================================================================
@@ -417,14 +429,14 @@ describe("Vectors should obey these algebraic identities.", function () {
     });
 
     /**
-     * 
+     *
      **/
     it("Obey the Binet-Cauchy identity.", function () {
 
     });
 
     /**
-     * 
+     *
      **/
     it("Obey Lagrange's identity.", function () {
 
