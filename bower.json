@@ -1,0 +1,21 @@
+{
+    "name": "vector",
+    "authors": [
+        "Ria Chu <chuyue10@gmail.com>"
+    ],
+    "description": "A vector library for Javascript.",
+    "main": "src/vector.js",
+    "devDependencies": {
+        "jasmine": "2.4.1"
+    },
+    "license": "GNU",
+    "homepage": "",
+    "private": true,
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}

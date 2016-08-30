@@ -154,7 +154,7 @@ Vector.prototype = {
     cross: function(other) {
         return new Vector(
             (this.y * other.z) - (this.z * other.y),
-            (this.x * other.z) - (this.z * other.x),
+            (this.z * other.x) - (this.x * other.z),
             (this.x * other.y) - (this.y * other.x)
         );
     }

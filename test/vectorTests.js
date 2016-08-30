@@ -280,7 +280,6 @@ describe("3D Vector objects", function () {
 
         expect(firstQuadrant.direction()).toBe(Math.PI / 4);
         expect(secondQuadrant.direction()).toBe(3 * Math.PI / 4);
-        ss
         expect(thirdQuadrant.direction()).toBe(-3 * Math.PI / 4);
         expect(fourthQuadrant.direction()).toBe(-Math.PI / 4);
     });
@@ -306,11 +305,18 @@ describe("3D Vector objects", function () {
      * Test for vector.cross().
      */
     it("should return the correct cross product result.", function() {
-        var a = new Vector(19, 11, -9);
-        var b = new Vector(-2, 20, 20);
-        var resultant = new Vector(400, -362, 402);
+        var a = new Vector(-1, 7, 4);
+        var b = new Vector(-5, 8, 4);
+        var resultant = new Vector(-4, -16, 27);
         expect(a.cross(b)).toEqual(resultant);
     });
+});
+
+// ============================================================================
+// MORE INVOLVED CROSS PRODUCT TESTS
+// ============================================================================
+describe("Vector cross product should behave correctly.", function() {
+    
 });
 
 // ============================================================================
@@ -405,6 +411,13 @@ describe("Vectors should obey these algebraic identities.", function () {
         var left = a.subtract(b).magnitude();
         var right = a.magnitude() - b.magnitude();
         expect(left >= right).toBeTruthy();
+    });
+
+    /**
+     * A X B = - (B X A)
+     */
+    it("Obey the anti-commutative property of cross product.", function() {
+
     });
 
     /**

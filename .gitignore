@@ -1,0 +1,5 @@
+# ternjs file #
+.tern-project
+
+# bower packages #
+bower_components/
